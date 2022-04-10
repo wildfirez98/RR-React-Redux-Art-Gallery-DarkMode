@@ -21,7 +21,7 @@ function App(props) {
     }
   }
 
-  useEffect (() => {
+ useEffect (() => {
     dispatch(fetchData())
   }, [props.objectId, dispatch])
 
