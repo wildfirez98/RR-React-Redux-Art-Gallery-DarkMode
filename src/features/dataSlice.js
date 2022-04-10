@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Note, the two states were trackin in this app are objectId as an integer and apiData as an array
+
 const initialState = {
     objectId: 436947,
     apiData: {}
