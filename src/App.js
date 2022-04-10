@@ -1,8 +1,15 @@
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux'
+import { useEffect } from 'react'
 import { customIdInput, decrementIdOne, incrementIdOne, fetchData, resetState } from './features/dataSlice'
 
-function App() {
+// Note: map our objectId to props in order to run our useEffect code every time the objectId changes
+const mapStateToProps = (state) => ({
+  objectId: state.data.objectId
+})
+
+// Call on main App - Note had to add props into the App function so its tracked and can be used be the useEffect hook
+function App(props) {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
 
@@ -13,6 +20,10 @@ function App() {
       return <p>Image Here</p>
     }
   }
+
+  useEffect (() => {
+    dispatch(fetchData())
+  }, [props.objectId, dispatch])
 
   return (
     <div className="App">
@@ -34,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App)
